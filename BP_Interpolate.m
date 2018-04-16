@@ -1,4 +1,4 @@
-function [i_data] = BP_Interpolate(data)
+function [i_data] = BP_Interpolate(data,BPcfg)
 % BIOPAC data preprocessing toolbox - linear interpolation
 % This function replaces missing data (NaNs) by linearly interpolated 
 % values. If the first (or last) samples of the signal are artefacts, the 
@@ -14,7 +14,7 @@ function [i_data] = BP_Interpolate(data)
 % Written by Roeland Heerema (roelandheerema@hotmail.com) in January 2018
 
 
-jumpsize = 10000;
+jumpsize = 10*BPcfg.signal.FS;
 %Loop through the data and, once a NaN is found, look for the previous and
 %the next non-NaN data points. Set jumpsize high if you have a lot of data
 %and not many artefacts for faster looping.

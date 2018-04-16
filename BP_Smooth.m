@@ -39,9 +39,8 @@ end
 s_data = ft_preproc_smooth(data,kernel);
 
 if BPcfg.smooth.Visualize
-    close
     figure;hold on
-    plot(data);plot(s_data)
+    plot(data); plot(s_data)
     title('Original vs. smoothed data')
     xlabel('Samples')
     ylabel('Signal')

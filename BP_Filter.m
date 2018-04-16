@@ -78,7 +78,6 @@ if BPcfg.filter.Visualize
         %the complex conugate (CONJ). Note: symmetric about the middle.
     freq = FS/length(data).*(0:length(data)/2); %Frequencies
     
-%     close
     figure
     subplot(1,2,1)  %Original vs. filtered signal
         hold on

@@ -19,7 +19,7 @@
 %% Fill this in yourself
 
 %Set a directory
-    BPcfg.dir.SPM = 'C:\Users\roeland.heerema\Documents\MATLAB\spm12'; %Your SPM12 folder
+    BPcfg.dir.SPM = 'C:\Users\Roeland\Documents\MATLAB\spm12'; %Your SPM12 folder
 %     We use an external toolbox called 'Fieldtrip', so SPM12
 %     does not strictly need to be installed - you can leave this field 
 %     empty and enter the preprocessing subfolder of fieldtrip directly (if 
@@ -85,6 +85,5 @@
     BPcfg.smooth.Kernel.PPG = BPcfg.signal.FS/2;             %boxcar size of 0.5 seconds.
     BPcfg.smooth.Visualize = 0;                              %Visualize the data before and after smoothing;
 %Quantification
-    BPcfg.quantify.EMG.Stepsize = BPcfg.signal.FS/10;        %Segmentation of the window of interest in steps of this many samples; compute one measure per segment (here set to 100ms).
     BPcfg.quantify.EDA.Visualize = 0;                        %Visualize each trial (in debug mode) with the detected peaks
     BPcfg.quantify.PPG.Visualize = 0;                        %Visualize the entire signal with the detected peaks

@@ -46,7 +46,6 @@ if BPcfg.epochs.Visualize
     end
     plotonsets = zeros(1,length(plotdata)); plotonsets(borders(:,1))=1.2*max(plotdata);
     
-    close
     figure; hold on;
     plot((1:length(plotdata))./BPcfg.signal.FS,plotdata)
     plot((1:length(plotdata))./BPcfg.signal.FS,plotonsets)

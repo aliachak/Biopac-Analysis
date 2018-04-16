@@ -30,7 +30,6 @@ function [s_data] = BP_Standardize(data,epochs,type,BPcfg)
             Blocks = 1:length(epochs);
         end
     
-
 %Loop through blocks
     for block = 1:size(Blocks,1)
         %Collect trial signal only
