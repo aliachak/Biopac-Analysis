@@ -22,7 +22,17 @@ function [HeartRate,NetEnvelope,PeakLocs] = BP_Quantify_PPG(data,BPcfg)
 
 
 %1. Find peak locations
-    [PKS,LOCS]= findpeaks(data);   
+    try %use existing Matlab function in "signal" toolbox
+        [PKS,LOCS]= findpeaks(data);   
+    catch %if not present, do the following:
+        LOCS = [];
+        for i = 2:length(data)-1
+            if e(i-1) <= e(i) && e(i+1) <= e(i)
+                LOCS = [LOCS; i];
+            end
+        end
+        PKS = data(LOCS);
+    end
     PeakLocs = zeros(size(data)); PeakLocs(LOCS) = 1;
  
 %2. Make heart rate signal and interpolate
