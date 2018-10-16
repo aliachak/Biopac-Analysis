@@ -30,7 +30,8 @@
 %Set sampling rate [Hz]       
     BPcfg.signal.FS = 1000; 
      
-%Set windows and baselines [s] (only for quantification/analysis)
+%Set windows and baselines [s] 
+%     For standardization, quantification, and analysis.
 %     Here we are assuming you have epochs of variable lenghts and by
 %     specifying your window-of-interest and your baseline, you can select
 %     the samples within an epoch that you want to process (because it
@@ -42,8 +43,8 @@
 %     (You can set "Inf" instead of a fixed number, if you want to denote
 %     the end of every epoch without specifying a fixed duration).
 %     Don't forget: enter values in seconds!
-    BPcfg.Window.EDA = [5 16; 2 5];
-    BPcfg.Window.EMG = [5 16; 0 0];          
+    BPcfg.Window.EDA = [0 0; 0 Inf];    %The entire window will be standardized
+    BPcfg.Window.EMG = [5 20; 4.5 5];   %The signal will be standardized from 0.5 before window of interest until 20s after the onset of the window of interest  
     BPcfg.Window.PPG = [5 16; 0 5];
     
 %Divide experiment into blocks (only for standardization)
