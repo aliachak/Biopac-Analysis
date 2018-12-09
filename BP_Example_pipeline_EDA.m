@@ -24,7 +24,10 @@ clear all; clc
     % contain blocks that have different signal-to-noise ratios.
     % Alternatively you can filter the entire 1D signal at once, if you
     % didn't divide the experiment in blocks in the configuration script.
-    EDAdata = BP_Filter(EDAdata,'EDA',BPcfg);                      
+    BPcfg.filter.BandPass.EDA = [0.01 4.9];
+    EDAdata = BP_Filter(EDAdata,'EDA',BPcfg);  
+    clc
+    return
 %SMOOTH
     % Smoothen the data; for low-frequency activity such as that from skin
     % conductance data, you only need this if your signal-to-noise ratio is

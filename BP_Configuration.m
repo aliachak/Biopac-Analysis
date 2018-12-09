@@ -31,7 +31,7 @@
     BPcfg.signal.FS = 1000; 
      
 %Set windows and baselines [s] 
-%     For standardization, quantification, and analysis.
+%     For normalization, quantification, and analysis.
 %     Here we are assuming you have epochs of variable lenghts and by
 %     specifying your window-of-interest and your baseline, you can select
 %     the samples within an epoch that you want to process (because it
@@ -43,9 +43,9 @@
 %     (You can set "Inf" instead of a fixed number, if you want to denote
 %     the end of every epoch without specifying a fixed duration).
 %     Don't forget: enter values in seconds!
-    BPcfg.Window.EDA = [0 0; 0 Inf];    %The entire window will be standardized
-    BPcfg.Window.EMG = [5 20; 4.5 5];   %The signal will be standardized from 0.5 before window of interest until 20s after the onset of the window of interest  
-    BPcfg.Window.PPG = [5 16; 0 5];
+    BPcfg.Window.EDA = [0 Inf; 0 0];    %Standardize over full epoch
+    BPcfg.Window.EMG = [5 15; 4.5 5];   %Standardize over window of interest and the preceding baseline          
+    BPcfg.Window.PPG = [5 Inf; 4 5];    %Standardize over full epoch
     
 %Divide experiment into blocks (only for standardization)
 %     m×n matrix of type double containing all your trial numbers; thereby
@@ -55,7 +55,7 @@
 %     between blocks.) If you rather want to standardize over the whole
 %     experiment at once, enter all n trials as a 1×n matrix. 
 %     Example: BPcfg.signal.Blocks = [1:15;16:30;31:45;46:60;61:75;76:90];
-    BPcfg.signal.Blocks = [1:15;16:30;31:45;46:60;61:75;76:90];     
+    BPcfg.signal.Blocks = [1:25;26:50;51:75];     
 
 %% Default Settings
 
@@ -65,7 +65,7 @@
 %Filtering
     BPcfg.filter.Visualize = 0;                             %Visualize the power spectrum of the original and the filtered data (set to zero for faster analysis)
     BPcfg.filter.BandPass.EMG = [20 BPcfg.signal.FS/2-1];   %Bandpass frequencies in Hz for EMG
-    BPcfg.filter.BandPass.EDA = [0.01 0.5];                 %Bandpass frequencies in Hz for EDA (skin conductance measures)
+    BPcfg.filter.BandPass.EDA = [0.01 .5];                  %Bandpass frequencies in Hz for EDA (skin conductance measures)
     BPcfg.filter.BandPass.PPG = [0.01 2];                   %Bandpass frequencies in Hz for PPG (heart rate measures)
     BPcfg.filter.LineNoise = 50;                            %Notch filter frequency (here set to European default of 50Hz)   
 %Epoching
@@ -82,9 +82,8 @@
 %Smoothing
     %Select the amount of samples in the boxcar kernel:
     BPcfg.smooth.Kernel.EMG = BPcfg.signal.FS/2;             %boxcar size of 0.5 seconds.
-    BPcfg.smooth.Kernel.EDA = BPcfg.signal.FS*3;             %boxcar size of 3 seconds.
+    BPcfg.smooth.Kernel.EDA = BPcfg.signal.FS;               %boxcar size of 1 second.
     BPcfg.smooth.Kernel.PPG = BPcfg.signal.FS/2;             %boxcar size of 0.5 seconds.
     BPcfg.smooth.Visualize = 0;                              %Visualize the data before and after smoothing;
 %Quantification
-    BPcfg.quantify.EDA.Visualize = 0;                        %Visualize each trial (in debug mode) with the detected peaks
     BPcfg.quantify.PPG.Visualize = 0;                        %Visualize the entire signal with the detected peaks
